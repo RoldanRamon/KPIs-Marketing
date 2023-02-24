@@ -1,4 +1,4 @@
-![Marketing KPYs](https;//tse4.mm.bing.net/th?id=OIP.pV6d8UAuAkcNSj6hDCdPIAHaDZ)
+![](https://tse3.mm.bing.net/th?id=OIP.cvUHngYEIWGJ9xgYct9V2gHaEv)
 
 # KPIs de Marketing
 
