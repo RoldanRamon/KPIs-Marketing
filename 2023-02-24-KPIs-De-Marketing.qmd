@@ -1,0 +1,62 @@
+---
+title: "2023-02-24-KPIs-De-Marketing"
+author: "Ramon Roldan"
+date: "2023-02-19"
+categories: [KPI, Data Science, Tydeverse]
+tags: [Tydeverse, Web Scrapping, KPI, Analitycs, Dashboard, Data Science, ETL, Git, GitHub, R, Linux, GGPLOT]
+---
+
+## Principal Objetivo
+
+Os KPIs, Key Performance Indicator, são métricas específicas usadas para avaliar o progresso em relação a metas de negócios e objetivos estratégicos.
+
+Eles ajudam as empresas a medir o sucesso de suas iniciativas de marketing, identificar áreas para melhorias e tomar decisões informadas com base em dados.
+
+Este estudo busca utilizar técnicas de Data Science, marketing, strategic sourcing e metodologias ágeis para desenvolver um dashboard interativo.
+
+## Organização do Trabalho
+
+
+
+## Principais KPIs
+
+-   **Taxa de abertura de e-mails**: a porcentagem de destinatários de e-mails de marketing que abrem o e-mail.
+
+-   **Taxa de cliques**: a porcentagem de pessoas que clicam em um link em um e-mail de marketing ou anúncio online.
+
+-   **Engajamento nas redes sociais**: a medida em que os seguidores de uma marca ou página de mídia social interagem com suas postagens, como curtidas, comentários e compartilhamentos.
+
+-   **Posicionamento nos motores de busca**: a posição em que uma página da web aparece nos resultados dos motores de busca, como Google, quando um usuário pesquisa uma determinada palavra-chave.
+
+-   **Visitas ao site**: o número de visitas únicas que um site recebe em um determinado período de tempo.
+
+-   **Vendas por metro quadrado**: a receita gerada por unidade de área de vendas.
+
+-   **Vendas por funcionário**: a receita gerada por cada funcionário da loja.
+
+-   **Taxa de conversão de vendas**: a porcentagem de visitantes da loja que realizam uma compra.
+
+-   **Tempo médio de permanência na loja**: a quantidade média de tempo que os clientes passam na loja.
+
+-   **Número de vendas por cliente**: a quantidade média de produtos que cada cliente compra em uma única visita à loja.
+
+-   **Dwell time (tempo de permanência)**: o tempo que um cliente passa em um determinado local, como uma loja ou seção de produtos.
+
+-   **Taxa de retorno de visitantes**: a porcentagem de clientes que retornam à loja para fazer uma compra novamente.
+
+-   **Vendas por clique**: a receita gerada por cada clique em um anúncio online ou em um link de produto em uma loja virtual.
+
+-   **Custo por cliente adquirido (CPA)**: o custo médio de adquirir um novo cliente.
+
+-   **Net promoter score (NPS)**: uma métrica que avalia a lealdade e satisfação do cliente, avaliando a probabilidade de ele recomendar a marca ou produto para outras pessoas.
+
+##Principais Fontes
+-   **Google Analytics**: é uma ferramenta gratuita que permite rastrear e analisar o tráfego do seu site, incluindo visitas, tempo de permanência, taxas de conversão e muito mais. É uma ótima fonte de dados para métricas como visitas ao site e taxa de conversão de vendas.
+
+-   **Redes sociais**: cada plataforma de mídia social, como Facebook, Instagram e Twitter, tem suas próprias ferramentas de análise que podem fornecer informações sobre engajamento, alcance e outras métricas relevantes.
+
+-   **Planilhas de vendas e desempenho**: se você está trabalhando em uma empresa, é provável que já existam planilhas e relatórios de vendas e desempenho disponíveis. Esses dados podem incluir informações como vendas por metro quadrado, vendas por funcionário e tempo médio de permanência na loja.
+
+-   **Pesquisas de satisfação do cliente**: as pesquisas podem ser uma ótima fonte de informações sobre o desempenho do produto e a lealdade do cliente. Você pode conduzir pesquisas online, por telefone ou em pessoa para coletar dados sobre a satisfação do cliente, o Net Promoter Score e outras métricas relevantes.
+
+-   **Relatórios de mídia paga**: se a sua empresa está investindo em publicidade online, os relatórios de mídia paga podem fornecer informações sobre taxas de abertura de e-mails, taxa de cliques e vendas por clique.

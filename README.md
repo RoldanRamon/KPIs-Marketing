@@ -1,43 +1,39 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
-![Marketing
-KPYs](https://tse4.mm.bing.net/th?id=OIP.pV6d8UAuAkcNSj6hDCdPIAHaDZ)
+![Marketing KPYs](https;//tse4.mm.bing.net/th?id=OIP.pV6d8UAuAkcNSj6hDCdPIAHaDZ)
 
 # KPIs de Marketing
 
-Os KPIs, Key Performance Indicator, são métricas específicas usadas para
-avaliar o progresso em relação a metas de negócios e objetivos
-estratégicos. Eles ajudam as empresas a medir o sucesso de suas
-iniciativas de marketing, identificar áreas para melhorias e tomar
-decisões informadas com base em dados.
+Os KPIs, Key Performance Indicator, são métricas específicas usadas para avaliar o progresso em relação a metas de negócios e objetivos estratégicos.
 
-Alguns exemplos de KPIs comuns para as empresas de marketing incluem:
+Eles ajudam as empresas a medir o sucesso de suas iniciativas de marketing, identificar áreas para melhorias e tomar decisões informadas com base em dados.
 
-1.  Conversão de leads em vendas Custo por aquisição de cliente (CAC);
+Os KPIs mais utilizadosnas empresas de marketing são;
 
-2.  Retorno sobre investimento (ROI);
+-   Taxa de abertura de e-mails;
 
-3.  Taxa de abertura de e-mails Taxa de cliques (CTR)
+-   Taxa de cliques;
 
-4.  Taxa de rejeição (Bounce Rate);
+-   Engajamento nas redes sociais;
 
-5.  Engajamento nas redes sociais;
+-   Posicionamento nos motores de busca;
 
-6.  Comentários e avaliações dos clientes;
+-   Visitas ao site;
 
-7.  Taxa de conversão em vendas;
+-   Vendas por metro quadrado;
 
-8.  Posicionamento nos motores de busca (SEO);
+-   Vendas por funcionário;
 
-9.  Número de visitas ao site;
+-   Taxa de conversão de vendas;
 
-10. Tempo de permanência no site
+-   Tempo médio de permanência na loja;
 
-Esses são apenas alguns exemplos de KPIs que as empresas de marketing
-podem usar para avaliar o desempenho de suas campanhas e estratégias. É
-importante lembrar que os KPIs variam de acordo com as metas e objetivos
-específicos de cada empresa.
+-   Número de vendas por cliente;
+
+-   Dwell time (tempo de permanência);
+
+-   Taxa de retorno de visitantes;
+
+-   Vendas por clique;
+
+-   Custo por cliente adquirido (CPA);
+
+-   Net promoter score (NPS).
