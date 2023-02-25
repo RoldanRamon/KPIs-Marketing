@@ -1,62 +1,232 @@
 ---
 title: "2023-02-24-KPIs-De-Marketing"
 author: "Ramon Roldan"
-date: "2023-02-19"
+date: "2023-02-24"
 categories: [KPI, Data Science, Tydeverse]
-tags: [Tydeverse, Web Scrapping, KPI, Analitycs, Dashboard, Data Science, ETL, Git, GitHub, R, Linux, GGPLOT]
+tags: [Tydeverse, Marketing, KPI, Analitycs, Dashboard, Data Science, ETL, Git, GitHub, R, Linux, GGPLOT, Design Thinking]
 ---
 
 ## Principal Objetivo
 
-Os KPIs, Key Performance Indicator, são métricas específicas usadas para avaliar o progresso em relação a metas de negócios e objetivos estratégicos.
+Utilizar técnicas de Data Science, Design Thinking e Metodologias Ágeis para entender quais são os principais indicadores de marketing e desenvolver um dashboard interativo.
 
-Eles ajudam as empresas a medir o sucesso de suas iniciativas de marketing, identificar áreas para melhorias e tomar decisões informadas com base em dados.
+## Motivação do Trabalho
 
-Este estudo busca utilizar técnicas de Data Science, marketing, strategic sourcing e metodologias ágeis para desenvolver um dashboard interativo.
+O setor de marketing é responsável por desenvolver estratégias de promoção e posicionamento das marcas no mercado varejista, conscientizando o público alvo sobre seus produtos e assim aumentando a receita por meio da "demanda estimulada".
+
+A globalização tornou o varejo um setor altamente competitivo. Onde a assertividade de marketing é um fator crucial para se destacar entre a concorrência, ganhar relevância e assim aumentar o marketshare da empresa.
+
+Direcionadas para a cultura de data driven cada vez mais as organizações tomam decisões baseadas em dados, onde os KPIs (Key Performance Indicator) são o "leme do barco" e responsáveis por:
+
+-   Medir o sucesso das Metas e/ou OKRs;
+-   Acompanhar o progresso das iniciativas em andamento;
+-   Identificar principais pontos de melhorias para "correção da rota".
 
 ## Organização do Trabalho
 
+### Cronograma de Projeto
+
+Utilizamos o gráfico de Gantt para elaborar um cronograma de projeto e assim organizar tempos e processos.
+
+```{r,warning=FALSE,message=FALSE}
+#Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.
+library(tidyverse)
+# Criamos um dataset com as principais tarefas e tempos
+dados <- tibble(
+  tarefa = c("Definição do principal objetivo a ser alcançado",
+             "Versionar Projeto no GitHub, Criar Kanban, e Cronograma de Gantt",
+             "Fonte de dados: Elencar principais KPIs, e ferramentas onde estão os dados ",
+             "Coleta de Dados: Realizar Web Scrapping e Tratamento (EDA)",
+             "Desenvolvimento de Dashboard Interativo",
+             "Estruturar Informações no Artigo"),
+  inicio = as.Date(c("2023-01-28", "2023-01-29", "2023-01-31","2023-02-06","2023-02-12","2023-02-14")),
+  fim = as.Date(c("2023-01-29", "2023-01-30", "2023-02-05","2023-02-12","2023-02-14","2023-02-19"))
+) %>% mutate(tarefa = fct_inorder(tarefa), duracao = as.numeric(fim - inicio))
+
+# Criar o gráfico de Gantt com o ggplot
+ggplot(dados, aes(x = inicio, y = tarefa, xend = fim, yend = tarefa, color = tarefa)) +
+  geom_segment(size = 10,show.legend = FALSE) +
+  theme_light()+
+  scale_x_date(date_labels = "%d/%m/%Y",date_breaks = "3 days", limits = c(min(dados$inicio),max(dados$fim))) +
+  geom_text(aes(x = inicio + duracao/2, y = tarefa, label = paste0(duracao, " dias")),color="white")+
+  theme(axis.text.x = element_text(angle = 45))+
+  labs(title = "Cronograma do Projeto", x = "", y = "", fill = "",subtitle = paste("Duração Total:",sum(as.numeric(dados$fim - dados$inicio)),"Dias"))
+  
+```
+
+<!-- ![Imagem do Repositório](/assets/img/KPIs-De-Marketing/cronograma_do_projeto.png) -->
+
+### Versionar projeto no GitHub
+
+O trabalho foi desenvolvido usando um "Projeto" dentro da IDE Rstudio, e também criamos um [repositório do github](https://github.com/RoldanRamon/KPIs-Marketing) para ajudar no armazenamento e versionamento de todos os arquivos.
+
+![Imagem do Repositório](/assets/img/KPIs-De-Marketing/print_versionamento_github.png)
+
+### Organização no Kanban
+
+Adotamos a ferramenta Kanban para organizar as atividades do projeto no formato de metodologia ágil e assim ajudar no microgerenciamento:
+
+![Imagem do Kanban](/assets/img/KPIs-De-Marketing/print_kanban.png)
+
+## Principais KPIs Utilizados No Mercado
+
+Atualmente muitas organizações adotam a estrategia multicanal e/ou omnichannel visando fornecer uma experiência consistente e integrada ao cliente.
+
+Pensando nisso aborademos os TOP 15 KPIs mais utilizados e realizando a divisão entre ambiente online, físico e híbrido.
+
+### Ambiente Online:
+
+Os KPIs mais importantes do ambiente virtual onde as interações acontecem exclusivamente por meio da internet são:
+
+-   **Taxa de abertura de e-mails**: Mede a porcentagem de destinatários de e-mails de marketing que abrem o e-mail;
+-   **Taxa de cliques**: Mede a porcentagem de pessoas que clicam em um link em um e-mail de marketing ou anúncio online;
+-   **Engajamento nas redes sociais**: Mede quantidade de interações dos seguidores com as postagens. Geralmente as mais utilizadas são: curtidas, comentários e compartilhamentos;
+-   **Posicionamento nos motores de busca(SEO)**: Mede a posição em que uma página da web aparece nos resultados dos motores de busca, como Google, quando um usuário pesquisa uma determinada palavra-chave;
+-   **Visitas ao site**: Mede a quantidade de visitas únicas que um site recebe em um determinado período;
+-   **Vendas por clique**: Mede a receita gerada por cada clique em um anúncio online em uma loja virtual;
+
+### Ambiente Físico:
+
+Os KPIs mais importantes do ambiente físico onde as interações acontecem nas lojas (shoppings, supermercados, academias, etc) são:
+
+-   **Vendas por metro quadrado**: Mede a quantidade de vendas por área de venda, geralmente (M²), da loja;
+-   **Vendas por funcionário**: Mede a quantidade de vendas por cada funcionário;
+-   **Taxa de conversão de vendas**: Mede a porcentagem de visitantes da loja que efetuam uma compra;
+-   **Tempo médio de permanência na loja**: Mede o tempo médio que clientes passam na loja;
+-   **Taxa de retorno de visitantes**: Mede a porcentagem de clientes que retornam à loja para fazer uma compra novamente;
+
+### Ambiente Híbrido:
+
+Alguns KPIs são híbridos porque podem ser utilizados tanto no ambiente online e quanto no físico:
+
+-   **Taxa de conversão de vendas**: Mede a porcentagem de visitantes da loja que efetuam uma compra;
+-   **Número de vendas por cliente**: Mede a quantidade média de compras realizadas por cada cliente;
+-   **Dwell Time (tempo de permanência)**: Mede o tempo que os clientes passam em áreas específicas da loja;
+-   **Custo por cliente adquirido (CPA)**: Mede o custo médio de adquirir um novo cliente, incluindo todas as despesas de marketing e vendas;
+-   **Net promoter score (NPS)**: Mede a lealdade e satisfação do cliente, avaliando a probabilidade de ele recomendar a marca ou produto para outras pessoas.
+
+## Fontes De Dados Dos KPIs
+
+Os KPIs de marketing tem diversas fontes de dados e empresas com setores de marketing mais robustos geralmente investem em sistemas estruturados.
+
+O [**CRM Salesforce**](https://www.salesforce.com/br/crm/) é o sistema de gestão de relacionamento com o cliente mais popular atualmente disponível no mercado.
+
+Algumas fontes de dados tem um custo financeiro e outras estão disponíveis gratuitamente.
+Abaixo elencamos 10 das mais utilizadas no setor.
+
+### Fontes Pagas
+
+-   **ERP (Enterprise Resource Planning)**: O [SAP ERP](https://www.sap.com/brazil/products/erp/what-is-sap-erp.html) é um exemplo de sistema que ajuda a gerenciar processos internos da empresa, e quando integrado com o CRM ajuda a ter uma visão 360º.
+    
+    Resumidamente sua principal função é simplificar o fluxo de informações entre as áreas, reduzindo erros comunicação, e permitindo que a liderança visualize informações em tempo real sobre estoque. 
+
+-   **Relatórios de mídia paga**: Alguns exemplos de investimento em publicidade online são o [Google Ads](https://ads.google.com/intl/pt-BR_br/home/) e [Facebook Ads](https://www.facebook.com/business/ads), onde é possível obter informações sobre taxas de abertura de e-mails, taxa de cliques e vendas por clique.
+
+-   **Redes sociais**: Cada plataforma de mídia social, como [Linkedin](https://www.linkedin.com), [Facebook](https://www.facebook.com), [Instagram](https://www.instagram.com/), [TikTok](https://www.tiktok.com/pt-BR/), [YouTube](https://www.youtube.com) tem suas próprias ferramentas de análise que podem fornecer informações sobre engajamento outras métricas relevantes.
+
+-   [**Dados de e-commerce da Ebit/Nielsen**](https://nielseniq.com/global/pt/landing-page/ebit/nielseniq-ebit-brasil/webshoppers/): A Ebit/Nielsen é uma empresa de inteligência de mercado que fornece dados e insights sobre o mercado de e-commerce no Brasil.
+
+    Esses dados incluem informações sobre vendas, perfil dos compradores, categorias de produtos mais vendidos e muito mais. Esses dados podem ser úteis para entender as tendências do mercado de e-commerce e as preferências dos consumidores.
+
+    OBS.: Existem alguns relatórios gratuitos, mas a maioria precisa de um investimento financeiro.
+
+### Fontes Gratuitas
+
+-   [**Google Analytics**](https://analytics.google.com/analytics): Permite rastrear e analisar o tráfego do site, incluindo visitas, tempo de permanência, taxas de conversão e muito mais.
+
+    É uma ótima fonte de dados para métricas como visitas ao site e taxa de conversão de vendas.
+
+-   [**Google Trends**](https://trends.google.com/trends/?geo=BR): Permite saber o volume  de pesquisas sobre palavras-chave no Google.
+
+    Útil para entender o interesse do público em relação a produtos, serviços ou temas específicos, bem como identificar tendências de pesquisa ao longo do tempo.
+
+-   **Planilhas de vendas e desempenho**: Geralmente os setores internos da empresa possuem planilhas de "controle paralelo" com relatórios de vendas e desempenho disponíveis.
+
+    Esses dados podem incluir informações como vendas por metro quadrado, vendas por funcionário e tempo médio de permanência na loja.
+
+-   **Pesquisas de satisfação do cliente**: Ótima fonte de informações sobre o desempenho do produto e a lealdade do cliente.
+
+    Você pode conduzir pesquisas online, por telefone ou em pessoa para coletar dados sobre a satisfação do cliente, o Net Promoter Score e outras métricas relevantes.
+
+-   [Dados do Censo Demográfico do IBGE](https://www.ibge.gov.br/estatisticas/sociais/populacao.html): Pesquisa nacional que ocorre a cada dez anos e tem como objetivo fornecer informações detalhadas sobre a população brasileira, incluindo dados sobre idade, gênero, educação, renda e ocupação.
+
+    Esses dados podem ser úteis para entender o perfil demográfico e socioeconômico dos consumidores.
+
+-   [**Portal da Transparência do Governo Federal**](http://www.portaltransparencia.gov.br/): O Portal da Transparência do Governo Federal é um site mantido pelo governo brasileiro que fornece informações sobre as atividades do governo, incluindo dados sobre gastos públicos, contratações, salários de servidores públicos e muito mais.
+
+    Esses dados podem ser úteis para entender o ambiente regulatório e político e como isso pode afetar os negócios.
+
+## Dashboard Interativo
+
+Desenvolveremos um relatorio interativo, com finalidade meramente acadêmica, para demonstrar na prática como alguns KPIs podem ser implementados no Tableau à partir de uma fonte de dados.
+
+### Fonte de Dados
+
+Utilizaremos dados abertos disponíveis publicamente na internet:
+
+-   [**Customer Churn Dataset**](https://www.kaggle.com/blastchar/telco-customer-churn)
+
+-   [**Retail Customer Segmentation Dataset**](https://www.kaggle.com/regivm/retailtransactiondata)
+
+-   [**Enron Email Dataset**](https://www.cs.cmu.edu/~enron/)
+
+-   [**Yelp Dataset**](https://www.yelp.com/dataset)
+
+### KPIs utilizados
+
+### Análises
+
+Separamos a análise em duas partes:
+
+-   **Exploratória (EDA)**: Onde usamos a linguagem R para processos de ETL (Extract, Transform and Load) e posteriormente entendimento dos dados EDA (Exploratory Data Analysis)
+-   **Inferencial**: Onde realizaremos a aferição de resultados dos KPIs.
+
+#### Exploratória (EDA)
+
+Esta análise envolve a exploração dos dados brutos em busca de relações, padrões e tendências. Ela ajuda a identificar variáveis importantes e pode fornecer insights para análises mais avançadas.
+
+Para realizar o tratamentamento de dados usaremos os pacotes do R:
+
+```{r,warning=FALSE,message=FALSE}
+# Primeiro vamos começar limpando o global environment
+rm(list = ls())
+# Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.
+library(tidyverse)
+# Utilizaremos a biblioteca Janitor para nos ajudar no saneamento e tratamento dos dados
+library(janitor)
+# Para realizar a análise exploratória e apresentação gráfica também usaremos o pacote DataExplorer
+library(DataExplorer)
+# Para nos ajudar na parte de visualização também utilizaremos o pacote Patchwork
+library(patchwork)
+```
+
+#### Análise Inferencial
+
+Esta análise envolve a inferência sobre a população com base em uma amostra dos dados. Ela usa estatísticas para tirar conclusões sobre a população a partir da amostra.
+
+## Conclusão
+
+Este trabalho trouxe benefícios como maior confiança na tomada de decisão e economia financeira, além de ter sido muito divertido, e uma das coisas mais interessantes foi que o produto ganhador não foi o mais caro e/ou aquele recomendado pela montadora.
 
 
-## Principais KPIs
+### Contato
 
--   **Taxa de abertura de e-mails**: a porcentagem de destinatários de e-mails de marketing que abrem o e-mail.
+Agradeço por sua atenção e caso tenha elogios, dúvidas, sugestões, critícas por favor me contate pelo [Linkedin](https://www.linkedin.com/in/ramon-roldan-de-lara) ou se preferir no email [roldanramon83@gmail.com](roldanramon83@gmail.com) que responderei assim que possível.
 
--   **Taxa de cliques**: a porcentagem de pessoas que clicam em um link em um e-mail de marketing ou anúncio online.
+No meu [portifolio](https://roldanramon.github.io) tem outros estudos legais.
 
--   **Engajamento nas redes sociais**: a medida em que os seguidores de uma marca ou página de mídia social interagem com suas postagens, como curtidas, comentários e compartilhamentos.
+### Premissas
 
--   **Posicionamento nos motores de busca**: a posição em que uma página da web aparece nos resultados dos motores de busca, como Google, quando um usuário pesquisa uma determinada palavra-chave.
+Este trabalho foi realizado com:
 
--   **Visitas ao site**: o número de visitas únicas que um site recebe em um determinado período de tempo.
+-   Linguagem R;
+-   IDE Rstudio;
+-   Framework Tidyverse e manifesto ágil;
+-   Documento Reproducivel - Quarto;
+-   Sistema Operacional Linux Mint;
+-   Para DataViz: Tableu e GGPLOT2.
 
--   **Vendas por metro quadrado**: a receita gerada por unidade de área de vendas.
+### Observações
 
--   **Vendas por funcionário**: a receita gerada por cada funcionário da loja.
-
--   **Taxa de conversão de vendas**: a porcentagem de visitantes da loja que realizam uma compra.
-
--   **Tempo médio de permanência na loja**: a quantidade média de tempo que os clientes passam na loja.
-
--   **Número de vendas por cliente**: a quantidade média de produtos que cada cliente compra em uma única visita à loja.
-
--   **Dwell time (tempo de permanência)**: o tempo que um cliente passa em um determinado local, como uma loja ou seção de produtos.
-
--   **Taxa de retorno de visitantes**: a porcentagem de clientes que retornam à loja para fazer uma compra novamente.
-
--   **Vendas por clique**: a receita gerada por cada clique em um anúncio online ou em um link de produto em uma loja virtual.
-
--   **Custo por cliente adquirido (CPA)**: o custo médio de adquirir um novo cliente.
-
--   **Net promoter score (NPS)**: uma métrica que avalia a lealdade e satisfação do cliente, avaliando a probabilidade de ele recomendar a marca ou produto para outras pessoas.
-
-##Principais Fontes
--   **Google Analytics**: é uma ferramenta gratuita que permite rastrear e analisar o tráfego do seu site, incluindo visitas, tempo de permanência, taxas de conversão e muito mais. É uma ótima fonte de dados para métricas como visitas ao site e taxa de conversão de vendas.
-
--   **Redes sociais**: cada plataforma de mídia social, como Facebook, Instagram e Twitter, tem suas próprias ferramentas de análise que podem fornecer informações sobre engajamento, alcance e outras métricas relevantes.
-
--   **Planilhas de vendas e desempenho**: se você está trabalhando em uma empresa, é provável que já existam planilhas e relatórios de vendas e desempenho disponíveis. Esses dados podem incluir informações como vendas por metro quadrado, vendas por funcionário e tempo médio de permanência na loja.
-
--   **Pesquisas de satisfação do cliente**: as pesquisas podem ser uma ótima fonte de informações sobre o desempenho do produto e a lealdade do cliente. Você pode conduzir pesquisas online, por telefone ou em pessoa para coletar dados sobre a satisfação do cliente, o Net Promoter Score e outras métricas relevantes.
-
--   **Relatórios de mídia paga**: se a sua empresa está investindo em publicidade online, os relatórios de mídia paga podem fornecer informações sobre taxas de abertura de e-mails, taxa de cliques e vendas por clique.
+-   Todos os documentos estão disponíveis no meu [Repositório do GitHub](https://github.com/RoldanRamon/KPIs-Marketing).
+-   Este artigo tem finalidade de estudo pessoal, não é recomendação de compra e/ou venda, e também não é patrocinado.

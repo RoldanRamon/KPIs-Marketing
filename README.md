@@ -2,38 +2,18 @@
 
 # KPIs de Marketing
 
-Os KPIs, Key Performance Indicator, são métricas específicas usadas para avaliar o progresso em relação a metas de negócios e objetivos estratégicos.
+## Principal Objetivo
 
-Eles ajudam as empresas a medir o sucesso de suas iniciativas de marketing, identificar áreas para melhorias e tomar decisões informadas com base em dados.
+Utilizar técnicas de Data Science, Design Thinking e Metodologias Ágeis para entender quais são os principais indicadores de marketing e desenvolver um dashboard interativo.
 
-Os KPIs mais utilizadosnas empresas de marketing são;
+## Motivação do Trabalho
 
--   Taxa de abertura de e-mails;
+O setor de marketing é responsável por desenvolver estratégias de promoção e posicionamento das marcas no mercado varejista, conscientizando o público alvo sobre seus produtos e assim aumentando a receita por meio da "demanda estimulada".
 
--   Taxa de cliques;
+A globalização tornou o varejo um setor altamente competitivo. Onde a assertividade de marketing é um fator crucial para se destacar entre a concorrência, ganhar relevância e assim aumentar o marketshare da empresa.
 
--   Engajamento nas redes sociais;
+Direcionadas para a cultura de data driven cada vez mais as organizações tomam decisões baseadas em dados, onde os KPIs (Key Performance Indicator) são o "leme do barco" e responsáveis por:
 
--   Posicionamento nos motores de busca;
-
--   Visitas ao site;
-
--   Vendas por metro quadrado;
-
--   Vendas por funcionário;
-
--   Taxa de conversão de vendas;
-
--   Tempo médio de permanência na loja;
-
--   Número de vendas por cliente;
-
--   Dwell time (tempo de permanência);
-
--   Taxa de retorno de visitantes;
-
--   Vendas por clique;
-
--   Custo por cliente adquirido (CPA);
-
--   Net promoter score (NPS).
+-   Medir o sucesso das Metas e/ou OKRs;
+-   Acompanhar o progresso das iniciativas em andamento;
+-   Identificar principais pontos de melhorias para "correção da rota".
