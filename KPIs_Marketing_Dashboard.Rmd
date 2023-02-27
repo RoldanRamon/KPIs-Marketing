@@ -1,0 +1,104 @@
+---
+title: "KPIs Marketing"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(flexdashboard)
+library(DataExplorer)
+library(skimr)
+
+df_churn <- read_csv('assets/datasets/WA_Fn-UseC_-Telco-Customer-Churn.csv') %>% janitor::clean_names()
+
+```
+
+# Lista de Indicadores
+
+-   **Churn de clientes:** O conjunto de dados Customer Churn Dataset pode ser usado para criar um KPI de churn de clientes. Para fazer isso, você pode calcular a taxa de churn, ou seja, a porcentagem de clientes que cancelaram seu serviço, ao longo de um período específico, como um mês ou um trimestre. Você pode apresentar essa métrica em um gráfico de barras ou em um gráfico de linha para mostrar a tendência ao longo do tempo.
+
+
+-   **Segmentação de clientes:** O conjunto de dados Retail Customer Segmentation Dataset pode ser usado para criar um KPI de segmentação de clientes. Para fazer isso, você pode usar técnicas de análise de cluster para agrupar seus clientes em diferentes segmentos com base em características demográficas, comportamentais ou de compra. Você pode, então, criar um gráfico de pizza ou um gráfico de barras para mostrar a distribuição dos clientes em cada segmento.
+
+-   **Retenção de clientes:** Ambos os conjuntos de dados podem ser usados para criar um KPI de retenção de clientes. Para fazer isso, você pode acompanhar o número de clientes que retornam para fazer uma compra ou utilizar seu serviço após a primeira compra. Você pode apresentar essa métrica em um gráfico de linha ou em um gráfico de barras para mostrar a tendência ao longo do tempo.
+
+-   **Receita média por cliente:** Ambos os conjuntos de dados podem ser usados para criar um KPI de receita média por cliente. Para fazer isso, você pode calcular a receita total de sua empresa em um período específico e dividi-la pelo número total de clientes nesse período. Você pode apresentar essa métrica em um gráfico de linha ou em um gráfico de barras para mostrar a tendência ao longo do tempo.
+
+-   **Taxa de conversão:** Ambos os conjuntos de dados podem ser usados para criar um KPI de taxa de conversão. Para fazer isso, você pode acompanhar o número de visitantes do seu site ou de sua loja física e o número deles que fazem uma compra. Você pode apresentar essa métrica em um gráfico de pizza ou em um gráfico de barras para mostrar a distribuição dos visitantes que fazem uma compra.
+
+# Análise Exploratória
+
+## Linha 1
+
+### Chart A
+
+```{r}
+# Calcular a taxa de churn
+total_churn <- df_churn %>% 
+  filter(churn == "Yes") %>% 
+  summarise(n()) %>% pull()
+
+valueBox(
+      value = total_churn,
+      color = "red"
+    )
+
+```
+
+
+### Chart B
+
+```{r}
+total_customers <- df_churn %>% 
+  nrow()
+
+valueBox(
+      value = total_customers,
+      color = "red"
+    )
+
+```
+
+
+### Chart C
+
+```{r}
+churn_rate <- total_churn / total_customers
+
+valueBox(
+      value = churn_rate,
+      color = "red"
+    )
+```
+
+## linha dois
+
+### Monthly Churn Rate
+
+```{r}
+library(dplyr)
+library(lubridate)
+library(plotly)
+
+p1 <- df_churn %>% 
+  group_by(year_month = floor_date(as.Date("2023-02-24"), unit = "month") - months(1) * (tenure - 1)) %>% 
+  summarise(churn_rate = round((sum(churn == "Yes") / n())*100,digits = 2)) %>% 
+  ungroup() %>% 
+  mutate(year = lubridate::year(year_month),
+         year_month = forcats::fct_inorder(format(year_month, "%b/%Y"))
+          )
+  
+  # Create interactive plot
+plotly::ggplotly(
+  ggplot(p1,aes(x = year_month,y = churn_rate, fill = as.factor(year))) +
+    geom_col() +
+    theme(axis.text.x = element_text(angle = 45)) +
+    scale_fill_brewer(palette = "Set1")+
+    guides(fill = FALSE)+
+    labs(x="",y="")+
+    scale_y_continuous(n.breaks = 10)+
+    geom_text(aes(label=churn_rate))
+)
+```
