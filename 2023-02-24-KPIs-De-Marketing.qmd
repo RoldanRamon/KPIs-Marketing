@@ -22,51 +22,6 @@ Direcionadas para a cultura de data driven cada vez mais as organizações tomam
 -   Acompanhar o progresso das iniciativas em andamento;
 -   Identificar principais pontos de melhorias para "correção da rota".
 
-## Organização do Trabalho
-
-### Cronograma de Projeto
-
-Utilizamos o gráfico de Gantt para elaborar um cronograma de projeto e assim organizar tempos e processos.
-
-```{r,warning=FALSE,message=FALSE}
-#Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.
-library(tidyverse)
-# Criamos um dataset com as principais tarefas e tempos
-dados <- tibble(
-  tarefa = c("Definição do principal objetivo a ser alcançado",
-             "Versionar Projeto no GitHub, Criar Kanban, e Cronograma de Gantt",
-             "Fonte de dados: Elencar principais KPIs, e ferramentas onde estão os dados ",
-             "Coleta de Dados: Realizar Web Scrapping e Tratamento (EDA)",
-             "Desenvolvimento de Dashboard Interativo",
-             "Estruturar Informações no Artigo"),
-  inicio = as.Date(c("2023-01-28", "2023-01-29", "2023-01-31","2023-02-06","2023-02-12","2023-02-14")),
-  fim = as.Date(c("2023-01-29", "2023-01-30", "2023-02-05","2023-02-12","2023-02-14","2023-02-19"))
-) %>% mutate(tarefa = fct_inorder(tarefa), duracao = as.numeric(fim - inicio))
-
-# Criar o gráfico de Gantt com o ggplot
-ggplot(dados, aes(x = inicio, y = tarefa, xend = fim, yend = tarefa, color = tarefa)) +
-  geom_segment(size = 10,show.legend = FALSE) +
-  theme_light()+
-  scale_x_date(date_labels = "%d/%m/%Y",date_breaks = "3 days", limits = c(min(dados$inicio),max(dados$fim))) +
-  geom_text(aes(x = inicio + duracao/2, y = tarefa, label = paste0(duracao, " dias")),color="white")+
-  theme(axis.text.x = element_text(angle = 45))+
-  labs(title = "Cronograma do Projeto", x = "", y = "", fill = "",subtitle = paste("Duração Total:",sum(as.numeric(dados$fim - dados$inicio)),"Dias"))
-  
-```
-
-<!-- ![Imagem do Repositório](/assets/img/KPIs-De-Marketing/cronograma_do_projeto.png) -->
-
-### Versionar projeto no GitHub
-
-O trabalho foi desenvolvido usando um "Projeto" dentro da IDE Rstudio, e também criamos um [repositório do github](https://github.com/RoldanRamon/KPIs-Marketing) para ajudar no armazenamento e versionamento de todos os arquivos.
-
-![Imagem do Repositório](/assets/img/KPIs-De-Marketing/print_versionamento_github.png)
-
-### Organização no Kanban
-
-Adotamos a ferramenta Kanban para organizar as atividades do projeto no formato de metodologia ágil e assim ajudar no microgerenciamento:
-
-![Imagem do Kanban](/assets/img/KPIs-De-Marketing/print_kanban.png)
 
 ## Principais KPIs Utilizados No Mercado
 
@@ -158,55 +113,20 @@ Abaixo elencamos 10 das mais utilizadas no setor.
 
 ## Dashboard Interativo
 
-Desenvolveremos um relatorio interativo, com finalidade meramente acadêmica, para demonstrar na prática como alguns KPIs podem ser implementados no Tableau à partir de uma fonte de dados.
+Desenvolvemos um relatorio, com finalidade meramente acadêmica, para demonstrar na prática como alguns KPIs podem ser implementados no Tableau à partir de uma fonte de dados.
+
+[Dashboard](https://rpubs.com/roldanramon83/kpi_marketing)
 
 ### Fonte de Dados
 
-Utilizaremos dados abertos disponíveis publicamente na internet:
+Utilizamos dados abertos disponíveis publicamente na internet:
 
 -   [**Customer Churn Dataset**](https://www.kaggle.com/blastchar/telco-customer-churn)
 
--   [**Retail Customer Segmentation Dataset**](https://www.kaggle.com/regivm/retailtransactiondata)
-
--   [**Enron Email Dataset**](https://www.cs.cmu.edu/~enron/)
-
--   [**Yelp Dataset**](https://www.yelp.com/dataset)
-
-### KPIs utilizados
-
-### Análises
-
-Separamos a análise em duas partes:
-
--   **Exploratória (EDA)**: Onde usamos a linguagem R para processos de ETL (Extract, Transform and Load) e posteriormente entendimento dos dados EDA (Exploratory Data Analysis)
--   **Inferencial**: Onde realizaremos a aferição de resultados dos KPIs.
-
-#### Exploratória (EDA)
-
-Esta análise envolve a exploração dos dados brutos em busca de relações, padrões e tendências. Ela ajuda a identificar variáveis importantes e pode fornecer insights para análises mais avançadas.
-
-Para realizar o tratamentamento de dados usaremos os pacotes do R:
-
-```{r,warning=FALSE,message=FALSE}
-# Primeiro vamos começar limpando o global environment
-rm(list = ls())
-# Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.
-library(tidyverse)
-# Utilizaremos a biblioteca Janitor para nos ajudar no saneamento e tratamento dos dados
-library(janitor)
-# Para realizar a análise exploratória e apresentação gráfica também usaremos o pacote DataExplorer
-library(DataExplorer)
-# Para nos ajudar na parte de visualização também utilizaremos o pacote Patchwork
-library(patchwork)
-```
-
-#### Análise Inferencial
-
-Esta análise envolve a inferência sobre a população com base em uma amostra dos dados. Ela usa estatísticas para tirar conclusões sobre a população a partir da amostra.
 
 ## Conclusão
 
-Este trabalho trouxe benefícios como maior confiança na tomada de decisão e economia financeira, além de ter sido muito divertido, e uma das coisas mais interessantes foi que o produto ganhador não foi o mais caro e/ou aquele recomendado pela montadora.
+Este trabalho mostra que quando juntamos expertisse da área de negócio, conhecimento de marketing, e técnicas de outras áreas como data science e metódologias ágeis conseguimos agregar valor ao trabalho para conseguir insights.
 
 
 ### Contato
@@ -214,17 +134,6 @@ Este trabalho trouxe benefícios como maior confiança na tomada de decisão e e
 Agradeço por sua atenção e caso tenha elogios, dúvidas, sugestões, critícas por favor me contate pelo [Linkedin](https://www.linkedin.com/in/ramon-roldan-de-lara) ou se preferir no email [roldanramon83@gmail.com](roldanramon83@gmail.com) que responderei assim que possível.
 
 No meu [portifolio](https://roldanramon.github.io) tem outros estudos legais.
-
-### Premissas
-
-Este trabalho foi realizado com:
-
--   Linguagem R;
--   IDE Rstudio;
--   Framework Tidyverse e manifesto ágil;
--   Documento Reproducivel - Quarto;
--   Sistema Operacional Linux Mint;
--   Para DataViz: Tableu e GGPLOT2.
 
 ### Observações
 

@@ -3,94 +3,86 @@ title: "KPIs Marketing"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
+    vertical_layout: scroll
+    navbar:
+     - { title: "Portfolio", icon: "fas fa-briefcase", href: "https://roldanramon.github.io/"}
+     - { title: "Linkedin", icon: "fab fa-linkedin", href: "https://www.linkedin.com/in/ramon-roldan-de-lara"}
+     - { title: "GitHub", icon: "fab fa-github-alt", href: "https://github.com/RoldanRamon"}
+     - { title: "WhatsApp", icon: "fab fa-whatsapp", href: "https://api.whatsapp.com/send?1=pt_BR&phone=5541984588355"}
 ---
 
+
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+rm(list = ls())
 library(tidyverse)
+library(janitor)
 library(flexdashboard)
 library(DataExplorer)
-library(skimr)
+library(plotly)
+library(lubridate)
+library(DT)
 
 df_churn <- read_csv('assets/datasets/WA_Fn-UseC_-Telco-Customer-Churn.csv') %>% janitor::clean_names()
 
 ```
 
-# Lista de Indicadores
+# About Data
 
--   **Churn de clientes:** O conjunto de dados Customer Churn Dataset pode ser usado para criar um KPI de churn de clientes. Para fazer isso, você pode calcular a taxa de churn, ou seja, a porcentagem de clientes que cancelaram seu serviço, ao longo de um período específico, como um mês ou um trimestre. Você pode apresentar essa métrica em um gráfico de barras ou em um gráfico de linha para mostrar a tendência ao longo do tempo.
+**Telcom Customer Churn - Context:**
+"Predict behavior to retain customers. You can analyze all relevant customer data and develop focused customer retention programs." [IBM Sample Data Sets]
 
-
--   **Segmentação de clientes:** O conjunto de dados Retail Customer Segmentation Dataset pode ser usado para criar um KPI de segmentação de clientes. Para fazer isso, você pode usar técnicas de análise de cluster para agrupar seus clientes em diferentes segmentos com base em características demográficas, comportamentais ou de compra. Você pode, então, criar um gráfico de pizza ou um gráfico de barras para mostrar a distribuição dos clientes em cada segmento.
-
--   **Retenção de clientes:** Ambos os conjuntos de dados podem ser usados para criar um KPI de retenção de clientes. Para fazer isso, você pode acompanhar o número de clientes que retornam para fazer uma compra ou utilizar seu serviço após a primeira compra. Você pode apresentar essa métrica em um gráfico de linha ou em um gráfico de barras para mostrar a tendência ao longo do tempo.
-
--   **Receita média por cliente:** Ambos os conjuntos de dados podem ser usados para criar um KPI de receita média por cliente. Para fazer isso, você pode calcular a receita total de sua empresa em um período específico e dividi-la pelo número total de clientes nesse período. Você pode apresentar essa métrica em um gráfico de linha ou em um gráfico de barras para mostrar a tendência ao longo do tempo.
-
--   **Taxa de conversão:** Ambos os conjuntos de dados podem ser usados para criar um KPI de taxa de conversão. Para fazer isso, você pode acompanhar o número de visitantes do seu site ou de sua loja física e o número deles que fazem uma compra. Você pode apresentar essa métrica em um gráfico de pizza ou em um gráfico de barras para mostrar a distribuição dos visitantes que fazem uma compra.
-
-# Análise Exploratória
-
-## Linha 1
-
-### Chart A
+**Content:**
+The raw data contains 7043 rows (customers) and 21 columns (features).
 
 ```{r}
-# Calcular a taxa de churn
+glimpse(df_churn)
+```
+
+
+# BI Analysis
+
+## Linha 1 {data-height=100}
+
+### Total Churn
+
+```{r }
 total_churn <- df_churn %>% 
   filter(churn == "Yes") %>% 
   summarise(n()) %>% pull()
 
-valueBox(
-      value = total_churn,
-      color = "red"
-    )
-
+valueBox(value = total_churn)
 ```
 
+### Total Customers
 
-### Chart B
-
-```{r}
+```{r }
 total_customers <- df_churn %>% 
   nrow()
 
-valueBox(
-      value = total_customers,
-      color = "red"
-    )
-
+valueBox(value = total_customers)
 ```
 
+### % Churn Rate
 
-### Chart C
+```{r }
+churn_rate <- round((total_churn / total_customers)*100,digits = 2)
 
-```{r}
-churn_rate <- total_churn / total_customers
-
-valueBox(
-      value = churn_rate,
-      color = "red"
-    )
+valueBox(value = churn_rate)
 ```
 
-## linha dois
+## linha dois {data-height=300}
 
-### Monthly Churn Rate
+### Monthly % Churn Rate
 
-```{r}
-library(dplyr)
-library(lubridate)
-library(plotly)
-
+```{r }
 p1 <- df_churn %>% 
   group_by(year_month = floor_date(as.Date("2023-02-24"), unit = "month") - months(1) * (tenure - 1)) %>% 
-  summarise(churn_rate = round((sum(churn == "Yes") / n())*100,digits = 2)) %>% 
+  summarise(churn_rate = round((sum(churn == "Yes") / n())*100,digits = 0)) %>% 
   ungroup() %>% 
   mutate(year = lubridate::year(year_month),
          year_month = forcats::fct_inorder(format(year_month, "%b/%Y"))
           )
-  
-  # Create interactive plot
+
 plotly::ggplotly(
   ggplot(p1,aes(x = year_month,y = churn_rate, fill = as.factor(year))) +
     geom_col() +
@@ -99,6 +91,57 @@ plotly::ggplotly(
     guides(fill = FALSE)+
     labs(x="",y="")+
     scale_y_continuous(n.breaks = 10)+
-    geom_text(aes(label=churn_rate))
+    geom_text(aes(label=churn_rate),angle=90)
 )
 ```
+
+## linha tres
+
+```{r }
+DT::datatable(df_churn)
+```
+
+# Exploratory Analysis (EDA)
+
+## Linha 1
+
+### Plot Vars Types
+
+```{r}
+DataExplorer::plot_intro(df_churn)
+```
+
+
+### Plot Missing Values
+
+```{r}
+DataExplorer::plot_missing(df_churn)
+```
+
+
+# Statistical Analysis
+
+## Linha 1
+
+### Plot Density
+
+```{r}
+DataExplorer::plot_density(df_churn)
+```
+
+
+### Plot Histogram
+
+```{r}
+DataExplorer::plot_histogram(df_churn)
+```
+
+
+# Machine Learning
+
+### Classifying Personas through clusters
+
+```{r}
+DataExplorer::plot_prcomp(df_churn %>% na.omit())
+```
+

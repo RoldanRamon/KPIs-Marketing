@@ -22,69 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -156,61 +93,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Acompanhar o progresso das iniciativas em andamento;</li>
 <li>Identificar principais pontos de melhorias para “correção da rota”.</li>
 </ul>
-</section>
-<section id="organização-do-trabalho" class="level2">
-<h2 class="anchored" data-anchor-id="organização-do-trabalho">Organização do Trabalho</h2>
-<section id="cronograma-de-projeto" class="level3">
-<h3 class="anchored" data-anchor-id="cronograma-de-projeto">Cronograma de Projeto</h3>
-<p>Utilizamos o gráfico de Gantt para elaborar um cronograma de projeto e assim organizar tempos e processos.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criamos um dataset com as principais tarefas e tempos</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">tarefa =</span> <span class="fu">c</span>(<span class="st">"Definição do principal objetivo a ser alcançado"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Versionar Projeto no GitHub, Criar Kanban, e Cronograma de Gantt"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Fonte de dados: Elencar principais KPIs, e ferramentas onde estão os dados "</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Coleta de Dados: Realizar Web Scrapping e Tratamento (EDA)"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Desenvolvimento de Dashboard Interativo"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Estruturar Informações no Artigo"</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">inicio =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2023-01-28"</span>, <span class="st">"2023-01-29"</span>, <span class="st">"2023-01-31"</span>,<span class="st">"2023-02-06"</span>,<span class="st">"2023-02-12"</span>,<span class="st">"2023-02-14"</span>)),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">fim =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2023-01-29"</span>, <span class="st">"2023-01-30"</span>, <span class="st">"2023-02-05"</span>,<span class="st">"2023-02-12"</span>,<span class="st">"2023-02-14"</span>,<span class="st">"2023-02-19"</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tarefa =</span> <span class="fu">fct_inorder</span>(tarefa), <span class="at">duracao =</span> <span class="fu">as.numeric</span>(fim <span class="sc">-</span> inicio))</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar o gráfico de Gantt com o ggplot</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> inicio, <span class="at">y =</span> tarefa, <span class="at">xend =</span> fim, <span class="at">yend =</span> tarefa, <span class="at">color =</span> tarefa)) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">10</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%d/%m/%Y"</span>,<span class="at">date_breaks =</span> <span class="st">"3 days"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(dados<span class="sc">$</span>inicio),<span class="fu">max</span>(dados<span class="sc">$</span>fim))) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> inicio <span class="sc">+</span> duracao<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> tarefa, <span class="at">label =</span> <span class="fu">paste0</span>(duracao, <span class="st">" dias"</span>)),<span class="at">color=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))<span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cronograma do Projeto"</span>, <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>,<span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Duração Total:"</span>,<span class="fu">sum</span>(<span class="fu">as.numeric</span>(dados<span class="sc">$</span>fim <span class="sc">-</span> dados<span class="sc">$</span>inicio)),<span class="st">"Dias"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="2023-02-24-KPIs-De-Marketing_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<!-- ![Imagem do Repositório](/assets/img/KPIs-De-Marketing/cronograma_do_projeto.png) -->
-</section>
-<section id="versionar-projeto-no-github" class="level3">
-<h3 class="anchored" data-anchor-id="versionar-projeto-no-github">Versionar projeto no GitHub</h3>
-<p>O trabalho foi desenvolvido usando um “Projeto” dentro da IDE Rstudio, e também criamos um <a href="https://github.com/RoldanRamon/KPIs-Marketing">repositório do github</a> para ajudar no armazenamento e versionamento de todos os arquivos.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="/assets/img/KPIs-De-Marketing/print_versionamento_github.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Imagem do Repositório</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="organização-no-kanban" class="level3">
-<h3 class="anchored" data-anchor-id="organização-no-kanban">Organização no Kanban</h3>
-<p>Adotamos a ferramenta Kanban para organizar as atividades do projeto no formato de metodologia ágil e assim ajudar no microgerenciamento:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="/assets/img/KPIs-De-Marketing/print_kanban.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Imagem do Kanban</figcaption><p></p>
-</figure>
-</div>
-</section>
 </section>
 <section id="principais-kpis-utilizados-no-mercado" class="level2">
 <h2 class="anchored" data-anchor-id="principais-kpis-utilizados-no-mercado">Principais KPIs Utilizados No Mercado</h2>
@@ -288,69 +170,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="dashboard-interativo" class="level2">
 <h2 class="anchored" data-anchor-id="dashboard-interativo">Dashboard Interativo</h2>
-<p>Desenvolveremos um relatorio interativo, com finalidade meramente acadêmica, para demonstrar na prática como alguns KPIs podem ser implementados no Tableau à partir de uma fonte de dados.</p>
+<p>Desenvolvemos um relatorio, com finalidade meramente acadêmica, para demonstrar na prática como alguns KPIs podem ser implementados no Tableau à partir de uma fonte de dados.</p>
+<p><a href="https://rpubs.com/roldanramon83/kpi_marketing">Dashboard</a></p>
 <section id="fonte-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="fonte-de-dados">Fonte de Dados</h3>
-<p>Utilizaremos dados abertos disponíveis publicamente na internet:</p>
+<p>Utilizamos dados abertos disponíveis publicamente na internet:</p>
 <ul>
-<li><p><a href="https://www.kaggle.com/blastchar/telco-customer-churn"><strong>Customer Churn Dataset</strong></a></p></li>
-<li><p><a href="https://www.kaggle.com/regivm/retailtransactiondata"><strong>Retail Customer Segmentation Dataset</strong></a></p></li>
-<li><p><a href="https://www.cs.cmu.edu/~enron/"><strong>Enron Email Dataset</strong></a></p></li>
-<li><p><a href="https://www.yelp.com/dataset"><strong>Yelp Dataset</strong></a></p></li>
+<li><a href="https://www.kaggle.com/blastchar/telco-customer-churn"><strong>Customer Churn Dataset</strong></a></li>
 </ul>
-</section>
-<section id="kpis-utilizados" class="level3">
-<h3 class="anchored" data-anchor-id="kpis-utilizados">KPIs utilizados</h3>
-</section>
-<section id="análises" class="level3">
-<h3 class="anchored" data-anchor-id="análises">Análises</h3>
-<p>Separamos a análise em duas partes:</p>
-<ul>
-<li><strong>Exploratória (EDA)</strong>: Onde usamos a linguagem R para processos de ETL (Extract, Transform and Load) e posteriormente entendimento dos dados EDA (Exploratory Data Analysis)</li>
-<li><strong>Inferencial</strong>: Onde realizaremos a aferição de resultados dos KPIs.</li>
-</ul>
-<section id="exploratória-eda" class="level4">
-<h4 class="anchored" data-anchor-id="exploratória-eda">Exploratória (EDA)</h4>
-<p>Esta análise envolve a exploração dos dados brutos em busca de relações, padrões e tendências. Ela ajuda a identificar variáveis importantes e pode fornecer insights para análises mais avançadas.</p>
-<p>Para realizar o tratamentamento de dados usaremos os pacotes do R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Primeiro vamos começar limpando o global environment</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizaremos a biblioteca tidyverse para o tratamento, manipulação e vizualização de dados.</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizaremos a biblioteca Janitor para nos ajudar no saneamento e tratamento dos dados</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Para realizar a análise exploratória e apresentação gráfica também usaremos o pacote DataExplorer</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Para nos ajudar na parte de visualização também utilizaremos o pacote Patchwork</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="análise-inferencial" class="level4">
-<h4 class="anchored" data-anchor-id="análise-inferencial">Análise Inferencial</h4>
-<p>Esta análise envolve a inferência sobre a população com base em uma amostra dos dados. Ela usa estatísticas para tirar conclusões sobre a população a partir da amostra.</p>
-</section>
 </section>
 </section>
 <section id="conclusão" class="level2">
 <h2 class="anchored" data-anchor-id="conclusão">Conclusão</h2>
-<p>Este trabalho trouxe benefícios como maior confiança na tomada de decisão e economia financeira, além de ter sido muito divertido, e uma das coisas mais interessantes foi que o produto ganhador não foi o mais caro e/ou aquele recomendado pela montadora.</p>
+<p>Este trabalho mostra que quando juntamos expertisse da área de negócio, conhecimento de marketing, e técnicas de outras áreas como data science e metódologias ágeis conseguimos agregar valor ao trabalho para conseguir insights.</p>
 <section id="contato" class="level3">
 <h3 class="anchored" data-anchor-id="contato">Contato</h3>
 <p>Agradeço por sua atenção e caso tenha elogios, dúvidas, sugestões, critícas por favor me contate pelo <a href="https://www.linkedin.com/in/ramon-roldan-de-lara">Linkedin</a> ou se preferir no email <a href="roldanramon83@gmail.com">roldanramon83@gmail.com</a> que responderei assim que possível.</p>
 <p>No meu <a href="https://roldanramon.github.io">portifolio</a> tem outros estudos legais.</p>
-</section>
-<section id="premissas" class="level3">
-<h3 class="anchored" data-anchor-id="premissas">Premissas</h3>
-<p>Este trabalho foi realizado com:</p>
-<ul>
-<li>Linguagem R;</li>
-<li>IDE Rstudio;</li>
-<li>Framework Tidyverse e manifesto ágil;</li>
-<li>Documento Reproducivel - Quarto;</li>
-<li>Sistema Operacional Linux Mint;</li>
-<li>Para DataViz: Tableu e GGPLOT2.</li>
-</ul>
 </section>
 <section id="observações" class="level3">
 <h3 class="anchored" data-anchor-id="observações">Observações</h3>
